@@ -1,10 +1,11 @@
 import '../styling/App.css'
 import { useContext } from 'react'
 import { UserContext } from '../context/userContext'
+import { Button } from '@mui/material';
 
 export default function Header() {
 
-    const {user} = useContext(UserContext);
+    const {user, setUser} = useContext(UserContext);
 
 
 
@@ -16,7 +17,18 @@ export default function Header() {
             </div>
             <span className='growSpan'/>
             {user.authed === true &&
-                <h5>Sign Out</h5>
+                <Button
+                  sx={{
+                    color: 'white',
+                    height: '2.5rem'
+                  }}
+
+                  onClick={() => {
+                    setUser({...user, authed: false})
+                  }}
+                >
+                  Sign Out
+                </Button>
             }
           </header>
     )

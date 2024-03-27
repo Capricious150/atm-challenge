@@ -1,32 +1,23 @@
+import '../styling/App.css'
 import { useContext } from "react"
 import { UserContext } from "../context/userContext"
-import { Button } from "@mui/material"
-import { menuButton } from "../styling/sxProps"
-import '../styling/App.css'
+import { titleCase } from "../utils/utils"
+import MakeDepositModal from "./modals/MakeDepositModal"
+import MakeWithdrawelModal from "./modals/MakeWithdrawelModal"
+import ViewBalanceModal from "./modals/ViewBalanceModal"
 
 
 export default function Menu () {
     const {user} = useContext(UserContext)
     return (
         <>
-            <h2>WELCOME {user.name?.toUpperCase().split(' ')[0]}</h2>
+            <h2>Welcome {titleCase(user.name?.split(' ')[0])}</h2>
+            <h2>Account Type: {titleCase(user.type)}</h2>
             <section className="container">
                 <nav>
-                    <Button 
-                    sx={menuButton}    
-                    >
-                        <h2>VIEW BALANCE</h2>
-                    </Button>
-                    <Button 
-                    sx={menuButton}    
-                    >
-                        <h2>DEPOSIT</h2>
-                    </Button>
-                    <Button 
-                    sx={menuButton}    
-                    >
-                        <h2>WITHDRAW</h2>
-                    </Button>
+                    <ViewBalanceModal />
+                    <MakeDepositModal />
+                    <MakeWithdrawelModal />
                 </nav>
             </section>
         </>

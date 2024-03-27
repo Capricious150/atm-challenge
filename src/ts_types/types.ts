@@ -6,5 +6,6 @@ export type User = {
     type?: string,
     credit_limit?: number,
     last_withdraw_date?: string,
-    last_withdraw_sum?: number
+    last_withdraw_sum?: number,
+    server_date?: string
 };
