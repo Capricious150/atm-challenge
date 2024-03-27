@@ -4,7 +4,7 @@ import { UserContext } from '../context/userContext'
 
 export default function Header() {
 
-    const userData = useContext(UserContext);
+    const {user} = useContext(UserContext);
 
 
 
@@ -15,7 +15,7 @@ export default function Header() {
               <h5>Your trusted name in ATMs</h5>
             </div>
             <span className='growSpan'/>
-            {userData.authed === true &&
+            {user.authed === true &&
                 <h5>Sign Out</h5>
             }
           </header>

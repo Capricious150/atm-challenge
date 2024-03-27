@@ -1,7 +1,8 @@
 import { TextField, Button } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/userContext";
 import { logIn } from "../api/api";
+import { User } from "../ts_types/types";
 
 export default function Login () {
 
@@ -23,12 +24,30 @@ export default function Login () {
         }
 
         try {
+            const reply = await logIn(accountNum);
+            if (reply.type) {
+                const user:User = {
+                    authed: true,
+                    account: reply.num,
+                    name: reply.name,
+                    amount: reply.amount,
+                    type: reply.type,
+                    credit_limit: reply.credit_limit,
+                    last_withdraw_date: reply.last_withdraw_date,
+                    last_withdraw_sum: reply.last_withdraw_sum
+                }
 
+                setUser(user);
+            }
         }
         catch(err){
 
         }
     }
+
+    useEffect(() => {
+        console.log(user)
+    }, [user])
 
     return (
         <div className="container">
@@ -41,7 +60,7 @@ export default function Login () {
                 <br/>
                 <Button 
                     fullWidth
-                    onClick={() => logIn(accountNum)}
+                    onClick={() => handleLogIn()}
                 >Sign In</Button>        
             </section>
         </div>
