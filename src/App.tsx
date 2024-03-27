@@ -1,4 +1,4 @@
-import './App.css'
+import './styling/App.css'
 import UserProvider from './context/userContext'
 import Body from './components/Body';
 

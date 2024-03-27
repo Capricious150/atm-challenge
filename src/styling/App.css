@@ -40,16 +40,16 @@ background: linear-gradient(90deg, rgba(132,128,195,1) 0%, rgba(239,239,242,1) 3
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-block: 12rem;
+  margin-block: 13%;
 }
 
-h1 {
+h1, h2, h3 {
   color: white;
   padding: 0;
   margin: 0;
   margin-top: 1rem;
 }
-h5 {
+h4, h5 {
   color: white;
   font-style: italic;
   padding: 0;
