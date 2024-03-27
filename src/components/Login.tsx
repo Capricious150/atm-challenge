@@ -1,8 +1,10 @@
 import { TextField, Button } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../context/userContext";
 
 export default function Login () {
 
+    const userData = useContext(UserContext);
     const [accountNum, setAccountNum] = useState<string>("");
 
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -23,7 +25,10 @@ export default function Login () {
                     value={accountNum}
                 />
                 <br/>
-                <Button fullWidth>Sign In</Button>        
+                <Button 
+                    fullWidth
+                    
+                >Sign In</Button>        
             </section>
         </div>
     )
