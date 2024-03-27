@@ -1,6 +1,5 @@
 export async function logIn (accNum: string) {
     try {
-
         const response = await fetch(`http://localhost:3000/login/${accNum}`, {
             method: 'POST'
         })
@@ -11,4 +10,8 @@ export async function logIn (accNum: string) {
     } catch (err) {
 
     }
+}
+
+export async function updateAmount (amount: number) {
+    
 }

@@ -13,8 +13,6 @@ export default function Login () {
         const validEntry_REGEX: RegExp = /^\d+$/
         if (validEntry_REGEX.test(e.target.value) || e.target.value === "") {
             setAccountNum(e.target.value)
-        } else {
-            console.log('fail')
         }
     }
 
