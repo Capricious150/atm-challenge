@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type User = {
     account: number,
     name: string,
@@ -5,3 +7,7 @@ export type User = {
     type: string,
     credit_limit?: number
 } | null;
+
+export type ChildProps = {
+    children: ReactNode
+}
