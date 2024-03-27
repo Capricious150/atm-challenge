@@ -1,14 +1,14 @@
 import { ReactNode, createContext, useContext } from "react";
-import { ChildProps, User } from "../ts_types/types";
+import { User } from "../ts_types/types";
 
-export const UserContext = createContext<User>(null)
+export const UserContext = createContext<User>({authed: false})
 
 export default function UserProvider ({children}: {children: ReactNode}) {
+
+    const user = useContext(UserContext);
     
     return (
-
-        
-        <UserContext.Provider >
+        <UserContext.Provider value={user}>
             {children}
         </UserContext.Provider>
     )

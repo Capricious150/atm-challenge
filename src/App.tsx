@@ -1,21 +1,24 @@
 
+import { useContext } from 'react'
 import './App.css'
+import Header from './components/Header'
+import UserProvider, { UserContext } from './context/userContext'
+import Login from './components/Login';
 
 function App() {
+  const userData = useContext(UserContext);
 
   return (
-    <main className='pageBody'>
-      <section className='pageCard'>
-        <header className='pageHeader'>
-          <div>
-            <h1>ATM</h1>
-            <h5>Your trusted name in ATMs</h5>
-          </div>
-          <span className='growSpan'/>
-          <h5>Sign Out</h5>
-        </header>
-      </section>
-    </main>
+    <UserProvider>
+      <main id='pageBody'>
+        <section id='pageCard'>
+          <Header />
+          {userData.authed === false &&
+            <Login />
+          }
+        </section>
+      </main>
+    </UserProvider>
   )
 }
 
