@@ -23,3 +23,7 @@ router.post('/login/:id', async (req, res) => {
         res.json(response)
     }
 })
+
+router.put('/update', async (req, res) => {
+    
+})

@@ -12,6 +12,17 @@ export async function logIn (accNum: string) {
     }
 }
 
-export async function updateAmount (amount: number) {
-    
+export async function updateAmount (amount: number, account: number) {
+    try {
+        const payload = {
+            account: account,
+            amount: amount
+        }
+        const response = await fetch(`http://localhost:3000/update`, {
+            method: 'PUT',
+            body: 
+        })
+    } catch (err) {
+
+    }
 }

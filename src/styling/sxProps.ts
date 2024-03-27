@@ -11,6 +11,7 @@ export const menuButton = {
 export const modalCard = {
     backgroundColor: 'rgba(104,104,163,1)',
     minHeight: '40vh',
+    minWidth: '20vw',
     p: '3rem',
     display: 'flex',
     justifyContent: 'center',

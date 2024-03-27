@@ -9,3 +9,8 @@ export type User = {
     last_withdraw_sum?: number,
     server_date?: string
 };
+
+export type BalancePayload = {
+    account: number,
+    amount: number
+}
