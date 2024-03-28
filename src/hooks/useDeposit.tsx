@@ -17,7 +17,9 @@ export const useDeposit = () => {
         } else{
         setStep(1);
         const newBalance: number = user.amount + amount
-        const response = await updateAmount(newBalance, user.account)       
+        const response = await updateAmount(newBalance, user.account) 
+        console.log(response)
+        return response      
     }}
     return {step, handleDeposit}
 }
