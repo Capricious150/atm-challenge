@@ -5,6 +5,7 @@ import { updateAmount } from "../api/api";
 export const useWithdrawal = () => {
     const [step, setStep] = useState<number>(0);
 
+    //The withdrawalValidator function will cascade down a big if/else if/else chain, looking for any errors
     const withdrawalValidator = (amount: number, user: User): ValidationResponse => {
         if (isNaN(amount) || typeof user.amount === "undefined" || typeof user.account === "undefined" || typeof user.credit_limit === "undefined") {
             return {
@@ -62,13 +63,15 @@ export const useWithdrawal = () => {
         } else if (validation.error === false && user.amount && user.account) {
 
             let sum;
+
+            //What immediately follows is a critical piece of logic which will inform the server what today's total withdrawal sum is
+            //This SHOULD live in the backend, and will be moved there if my DB auth issues can be resolved
             if (user.last_withdraw_date === user.server_date && user.last_withdraw_sum) {
                 sum = user.last_withdraw_sum + (amount * -1)
             } else {
                 sum = (amount * -1)
             }
             
-
             setStep(validation.step);
             const newBalance: number = user.amount + amount
             console.log(newBalance)

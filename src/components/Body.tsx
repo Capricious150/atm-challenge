@@ -4,6 +4,7 @@ import Login from "./Login"
 import { useContext } from "react"
 import Menu from "./Menu"
 
+//Very simple component, serves as the outer pagelayout. Called by App.tsx
 export default function Body () {
 
     const {user} = useContext(UserContext)

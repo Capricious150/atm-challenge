@@ -1,5 +1,6 @@
 import { User, LoginError, PgPutResponse, ValidationResponse } from "../ts_types/types";
 
+//Performs the same function as string.Title() method from other languages
 export function titleCase (str:string | undefined) {
     if (typeof str === "undefined") return ""
     const theLetters = str.split('');
@@ -8,15 +9,16 @@ export function titleCase (str:string | undefined) {
     return response;
 }
 
+//Makes a number have coinage
 export function handleCoinage (num: number) {
     console.log(num.toFixed(2))
     return num.toFixed(2)
 }
 
+//Below are a series of Type Guards to ensure that functions which could (theoretically) receive more than 1 plausible type of object are actually getting the intended type of object
 export function typeGuardUser (obj: User | LoginError): obj is User {
     return (obj as User).type !== undefined;
 }
-
 
 export function typeGuardPgResponse (obj: PgPutResponse | ValidationResponse): obj is PgPutResponse {
     return (obj as PgPutResponse).amount !== undefined;

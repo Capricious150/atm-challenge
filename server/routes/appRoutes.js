@@ -4,6 +4,8 @@ import { getFormattedDate, handleError, simulateLogin, simulatePut } from '../he
 export const router = express.Router();
 
 
+//Because I can't auth into the DB, many actions which would typically be performed on the backend have been relegated to the front
+//As a result, I only have 2 routes: 1 for signing in, and 1 for adjusting the balance of an account
 router.post('/login/:id', async (req, res) => {
     
     try {
@@ -25,6 +27,7 @@ router.post('/login/:id', async (req, res) => {
     }
 })
 
+//Note below: Only withdrawals will have req.body.sum, so some logic can be conditioned on that
 router.put('/update', async (req, res) => {
     try {
         const data = req.body

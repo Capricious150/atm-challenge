@@ -5,6 +5,7 @@ import { updateAmount } from "../api/api";
 export const useDeposit = () => {
     const [step, setStep] = useState<number>(0);
 
+    //The depositValidator function will cascade down a big if/else if/else chain, looking for any errors
     const depositValidator = (amount: number, user: User): ValidationResponse => {
         if (isNaN(amount) || typeof user.amount === "undefined" || typeof user.account === "undefined") {
             return {

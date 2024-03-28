@@ -1,3 +1,5 @@
+//These are SX Props for MUI, and are used in the place of CSS on some interactive components
+
 export const menuButton = {
     color: 'white',
     backgroundColor: 'blue',

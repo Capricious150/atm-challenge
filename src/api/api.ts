@@ -22,6 +22,7 @@ export async function updateAmount (amount: number, account: number, sum?: numbe
             amount: amount
         }
         
+        //If payload.sum exists, it's a withdrawal
         if (sum) {
             payload.sum = sum
         }

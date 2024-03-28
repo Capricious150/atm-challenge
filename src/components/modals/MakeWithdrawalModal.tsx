@@ -57,7 +57,10 @@ export default function MakeWithdrawalModal () {
                             <TextField 
                             label={"Enter amount to withdraw"}
                             value={withdrawAmount}
-                            onChange={(e) => handleInput(e)} 
+                            onChange={(e) => handleInput(e)}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter" && !isNaN(parseFloat(withdrawAmount))) handleSubmit(parseFloat(withdrawAmount), user)
+                            }} 
                             color="warning"
                             sx={{
                                 mb:'2rem'
@@ -86,6 +89,12 @@ export default function MakeWithdrawalModal () {
                                 onClick={() => resetStep()}
                             >Make another Withdrawal</Button>
                         </>                        
+                    }
+                    {step > 2 &&
+                        <>
+                            <h2>Something went wrong!</h2>
+                            <h2>Please sign out and try again</h2>
+                        </>
                     }
                 </Card>
             <Button onClick={() => setUser({...user, authed: false})}>Sign Out</Button>

@@ -27,6 +27,11 @@ export default function Login () {
             return "error"
         }
         if (user.account && user.account === parseInt(accountNum)){
+            //This is part of the simulated backend behavior.
+            //If a user signs out, and immediately signs back in as the same user in this mockup
+            //Only the authed value with be toggled, rather than a fresh login,
+            //So that some values can be stored in Context that I can't currently store in the DB.
+            //This will change if my authentication issues are resolved
             setUser({...user, authed: true})
         } else {
             try {
@@ -61,26 +66,29 @@ export default function Login () {
             <h2>Welcome!</h2>
             <h2>Please enter your account number</h2>
             <div className="container">
-                
                 {errorMessage === "" && 
                     <section id="loginField">
                         <TextField 
                             label={"Account Number"}
                             onChange={(e) => handleInput(e)}
-                            value={accountNum}
-                            color="warning"
-                            variant="standard"
-                            sx={{
-                                m: '0.25rem'
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') handleLogIn()
                             }}
+                        value={accountNum}
+                        color="warning"
+                        variant="standard"
+                        sx={{
+                            m: '0.25rem'
+                        }}
                         />
                         <br />
                         <Button 
                             fullWidth
                             onClick={() => handleLogIn()}
-                        >Sign In</Button>
+                            >Sign In</Button>
                     </section>
                 }
+                {/* If an error message exists, display it, and require confirmation before proceeding */}
                 {errorMessage &&
                     <section id="loginFieldNoBg">
                         <h2>No account with that ID found, please try again</h2>

@@ -1,3 +1,4 @@
+//This was meant to allow me to quickly break up different types of errors. However I ultimately only ever got the one type of error"
 export function handleError(str) {
     if (str === "28P01") {
         return "Authentication Error"
@@ -6,6 +7,7 @@ export function handleError(str) {
     }
 }
 
+//Gets the current date and returns it as a string in format 'mm/dd/yyyy'
 export function getFormattedDate () {
     const date = new Date();
     let day = date.getDate().toString();
@@ -16,8 +18,9 @@ export function getFormattedDate () {
     return `${month}/${day}/${year}`;
 }
 
+//Throughout development, I've been unable to authenticate into the Docker Container from my OS.
+//Because of this, I needed to create a simple function which would return default values during database actions to simulate responses
 export function simulateLogin(accNum) {
-
     const simulatedResponses = {
         1: {
             account: 1,
