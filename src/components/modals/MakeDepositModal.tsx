@@ -10,19 +10,32 @@ export default function MakeDepositModal () {
     
     const [open, setOpen] = useState<boolean>(false)
     const [depAmount, setDepAmount] = useState<string>("")
+    const [errorMessage, setErrorMessage] = useState<string>("")
+
     const {user, setUser} = useContext(UserContext)
     const {step, handleDeposit, resetStep} = useDeposit();
 
-    const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
         const validEntry_REGEX: RegExp = /^\d+(\.\d{0,2})?$/
         if (validEntry_REGEX.test(e.target.value) || e.target.value === "") {
             setDepAmount(e.target.value)
         } 
     }
 
-    const handleSubmit = async (amount: number, user: User) => {
+    const handleSubmit = async (amount: number, user: User): Promise<void> => {
+        setErrorMessage("")
         const response = await handleDeposit(amount, user);
-        setUser({...user, amount: response.amount})
+        if (response === null) return;
+        //@ts-ignore
+        if (response && response.error && response.error === true && response.message) {
+            setErrorMessage(response.message)
+        }
+        //@ts-ignore
+        else if (response && typeof response?.amount !== 'undefined' && !isNaN(parseFloat(response.amount))) {
+            //@ts-ignore
+            console.log(response.amount)
+            setUser({...user, amount: parseFloat(response.amount)})
+        }
     }
 
     return(
@@ -44,6 +57,7 @@ export default function MakeDepositModal () {
                 <>
                     <h3>Make a Deposit</h3>
                     <span className='growSpan' />
+                    <p>{errorMessage}</p>
                     <TextField 
                     label={"Enter amount to deposit"}
                     value={depAmount}

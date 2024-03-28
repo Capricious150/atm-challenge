@@ -1,20 +1,20 @@
-import { BalancePayload } from "../ts_types/types";
+import { BalancePayload, PgPutResponse, User } from "../ts_types/types";
 
-export async function logIn (accNum: string) {
+export async function logIn (accNum: string): Promise<User | undefined | void> {
     try {
         const response = await fetch(`http://localhost:3000/login/${accNum}`, {
             method: 'POST'
         })
         const theGoods = await response.json();
-        console.log(theGoods)
         return theGoods;
         
     } catch (err) {
-
+        console.log(err)
+        /* Additonal catch logic if needed. Error handling also done on backend, so this function shouldn't hit this block*/
     }
 }
 
-export async function updateAmount (amount: number, account: number) {
+export async function updateAmount (amount: number, account: number): Promise<PgPutResponse | undefined > {
     try {
         console.log("Entered Update")
         const payload: BalancePayload = {
@@ -33,5 +33,6 @@ export async function updateAmount (amount: number, account: number) {
         return theGoods
     } catch (err) {
         console.log(err)
+        /* Additional logic here if needed (as above) */
     }
 }

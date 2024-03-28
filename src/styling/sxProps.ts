@@ -8,10 +8,19 @@ export const menuButton = {
     pb: '1rem'
 }
 
+export const menuButtonSmall = {
+    color: 'white',
+    backgroundColor: 'blue',
+    display: 'block',
+    my: '1rem',
+    p: '0.5rem',
+}
+
 export const modalCard = {
     backgroundColor: 'rgba(104,104,163,1)',
-    minHeight: '40vh',
-    minWidth: '20vw',
+    height: '40vh',
+    width: '20vw',
+    textAlign: 'center',
     p: '3rem',
     display: 'flex',
     justifyContent: 'center',

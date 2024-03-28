@@ -29,7 +29,7 @@ export default function ViewBalanceModal () {
                     }
                     {  (user.type === 'credit' && typeof user.amount !== "undefined" ) &&
                         <>
-                            <h2>Account Balance: ${handleCoinage(parseFloat(user.amount) * -1).toString()}</h2>
+                            <h2>Account Balance: ${handleCoinage(parseFloat(user.amount)).toString()}</h2>
                             <h2>Credit Limit: ${user.credit_limit}</h2>
                         </>
                     }

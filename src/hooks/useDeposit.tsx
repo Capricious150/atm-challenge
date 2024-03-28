@@ -1,30 +1,60 @@
 import { useState } from "react"
-import { User } from "../ts_types/types";
+import { PgPutResponse, User, ValidationResponse } from "../ts_types/types";
 import { updateAmount } from "../api/api";
 
 export const useDeposit = () => {
     const [step, setStep] = useState<number>(0);
 
-    const handleDeposit = async (amount: number, user: User) => {
-        console.log(amount)
-        console.log(typeof amount)
+    const depositValidator = (amount: number, user: User): ValidationResponse => {
         if (isNaN(amount) || typeof user.amount === 'undefined' || typeof user.account === 'undefined') {
-            setStep(3);
-            return null;
+            return {
+                error: true,
+                message: "catastrophic error",
+                step: 3
+            };
         } else if (amount <= 0) {
-            setStep(0);
-            return null;
-        } else{
-        setStep(1);
-        const newBalance: number = user.amount + amount
-        const response = await updateAmount(newBalance, user.account) 
-        console.log(response)
-        setStep(2);
-        return response      
-    }}
+            return {
+                error: true,
+                message: 'Deposit must be positive, non-zero number',
+                step: 0
+            };
+        } else if (amount > 1000) {
+            return {
+                error: true,
+                message: 'Maximum Deposit Amount is 1000',
+                step: 0
+            }; 
+        } else if (user.type === 'credit' && amount + user.amount > 0){
+            return {
+                error: true,
+                message: 'Credit account cannot exceed positive 0 balance',
+                step: 0
+            }
+        } else return {
+            error: false,
+            step: 1
+        }
+            
+    }
 
-    const resetStep = () => {
-        setStep(0)
+    const handleDeposit = async (amount: number, user: User): Promise<ValidationResponse | PgPutResponse | undefined> => {
+
+        const validation: ValidationResponse = depositValidator(amount, user);
+        if (validation.error === true) {
+            setStep(validation.step)
+            return validation;
+        } else if (validation.error === false) {
+            setStep(validation.step);
+            const newBalance: number = user.amount + amount;
+            console.log(newBalance)
+            const response = await updateAmount(newBalance, user.account); 
+            setStep(2);
+            return response;      
+        }
+    }
+
+    const resetStep = (): void => {
+        setStep(0);
     }
 
     return {step, handleDeposit, resetStep}

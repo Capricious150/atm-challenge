@@ -14,3 +14,13 @@ export type BalancePayload = {
     account: number,
     amount: number
 }
+
+export type ValidationResponse = {
+    error: boolean,
+    message?: string,
+    step: number
+}
+
+export type PgPutResponse = {
+    amount: string
+}
