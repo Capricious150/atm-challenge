@@ -45,7 +45,7 @@ The different options will have the following behaviors:
 
 ## The Blocker:
 
-At the time of this writing, I am unable to auth into the docker database with my application, or from my OS.
+At the time of this writing, I am unable to auth into the docker database from outside of the container. This includes authentication attempts being made by my app.
 Because of this, the app is designed to simulate functionality even if it doesn't have a working database connection.
 My greatest concern is that my authentication issues are somehow unique and local to my system, and authentication will work correctly on another person's machine, which is a circumstance I've been completely unable to test. Because of this, my backend may not work correctly IF database authentication IS working correctly.
 
