@@ -1,4 +1,4 @@
-import '../../styling/App.css'
+import '../../styling/App.css';
 import { Dialog, Button, Card, TextField } from "@mui/material";
 import { menuButton, modalCard } from "../../styling/sxProps";
 import { useState, useContext } from "react";
@@ -12,10 +12,10 @@ import { typeGuardPgResponse, typeGuardValidationResponse } from '../../utils/ut
 //It returns a button, the Dialog, and uses a custom hook to manage its state and api calls
 export default function MakeDepositModal () {
     
-    const [open, setOpen] = useState<boolean>(false)
-    const [depAmount, setDepAmount] = useState<string>("")
-    const [errorMessage, setErrorMessage] = useState<string>("")
-    const {user, setUser} = useContext(UserContext)
+    const [open, setOpen] = useState<boolean>(false);
+    const [depAmount, setDepAmount] = useState<string>("");
+    const [errorMessage, setErrorMessage] = useState<string>("");
+    const {user, setUser} = useContext(UserContext);
     const {step, handleDeposit, resetStep} = useDeposit();
     
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
@@ -23,22 +23,22 @@ export default function MakeDepositModal () {
         //(The 0's could be any number)
         const validEntry_REGEX: RegExp = /^\d+(\.\d{0,2})?$/
         if (validEntry_REGEX.test(e.target.value) || e.target.value === "") {
-            setDepAmount(e.target.value)
+            setDepAmount(e.target.value);
         } 
-    }
+    };
 
     const handleSubmit = async (amount: number, user: User): Promise<void> => {
-        setErrorMessage("")
+        setErrorMessage("");
         const response = await handleDeposit(amount, user);
         if (response === null) return;
         if (response && typeGuardValidationResponse(response) && response.message) {
-            setErrorMessage(response.message)
+            setErrorMessage(response.message);
         }
         else if (response && typeGuardPgResponse(response) && !isNaN(parseFloat(response.amount))) {
-            console.log(response.amount)
-            setUser({...user, amount: parseFloat(response.amount)})
+            setDepAmount("");
+            setUser({...user, amount: parseFloat(response.amount)});
         }
-    }
+    };
 
     return(
         <>

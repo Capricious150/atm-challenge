@@ -40,13 +40,14 @@ export const useWithdrawal = () => {
         } else if (user.type === "credit" && amount + user.amount < (user.credit_limit * -1)) {
             return {
                 error: true,
-                message: "Maximum balance exceeded",
+                message: "Cannot exceed credit limit",
                 step: 0
             }
         } else if (user.last_withdraw_date &&  user.last_withdraw_sum && user.last_withdraw_date === user.server_date && (amount * -1) + user.last_withdraw_sum > 400) {
             return {
                 error: true,
-                message: "Cannot withdraw more than $400.00 in a day",
+                message: `Cannot withdraw more than $400.00 in a day. 
+                 Today, you've withdrawn $${user.last_withdraw_sum}.00`,
                 step: 0
             }
         } else return {

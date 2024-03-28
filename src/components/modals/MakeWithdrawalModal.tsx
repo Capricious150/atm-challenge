@@ -1,4 +1,4 @@
-import '../../styling/App.css'
+import '../../styling/App.css';
 import { Dialog, Button, Card, TextField } from "@mui/material";
 import { menuButton, modalCard } from "../../styling/sxProps";
 import { useState, useContext } from "react";
@@ -13,14 +13,14 @@ export default function MakeWithdrawalModal () {
     const [withdrawAmount, setWithdrawAmount] = useState<string>("");
     const {user, setUser} = useContext(UserContext);
     const {step, handleWithdrawal, resetStep} = useWithdrawal();
-    const [errorMessage, setErrorMessage] = useState<string>("")
+    const [errorMessage, setErrorMessage] = useState<string>("");
 
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
         const validEntry_REGEX: RegExp = /^\d+$/
         if (validEntry_REGEX.test(e.target.value) || e.target.value === "") {
             setWithdrawAmount(e.target.value)
         } 
-    }
+    };
 
     const handleSubmit = async (amount: number, user: User): Promise<void> => {
         setErrorMessage("");
@@ -31,10 +31,10 @@ export default function MakeWithdrawalModal () {
         if (response && typeGuardValidationResponse(response) && response.message) {
             setErrorMessage(response.message)
         } else if (response && typeGuardPgResponse(response) && !isNaN(parseFloat(response.amount)) && response.last_withdraw_sum) {
-            console.log(response.amount)
+            setWithdrawAmount("");
             setUser({...user, amount: parseFloat(response.amount), last_withdraw_date: response.last_withdraw_date, last_withdraw_sum: parseInt(response.last_withdraw_sum)})
         }
-    }
+    };
 
     return(
         <>
