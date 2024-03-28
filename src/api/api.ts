@@ -16,7 +16,6 @@ export async function logIn (accNum: string): Promise<User | LoginError | undefi
 
 export async function updateAmount (amount: number, account: number, sum?: number): Promise<PgPutResponse | undefined > {
     try {
-        console.log("Entered Update")
         const payload: BalancePayload = {
             account: account,
             amount: amount
@@ -35,7 +34,6 @@ export async function updateAmount (amount: number, account: number, sum?: numbe
             body: JSON.stringify(payload)
         })
         const theGoods = await response.json() 
-        console.log(theGoods)
         return theGoods
     } catch (err) {
         console.log(err)

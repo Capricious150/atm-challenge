@@ -17,26 +17,25 @@ export default function Login () {
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         const validEntry_REGEX: RegExp = /^\d+$/
         if (validEntry_REGEX.test(e.target.value) || e.target.value === "") {
-            setAccountNum(e.target.value)
+            setAccountNum(e.target.value);
         }
-    }
+    };
 
     const handleLogIn = async () => {
         if (errorMessage) setErrorMessage("Account Number");
         if ((isNaN(parseInt(accountNum))) || parseInt(accountNum) <= 0){
-            return "error"
-        }
+            return "error";
+        };
         if (user.account && user.account === parseInt(accountNum)){
             //This is part of the simulated backend behavior.
             //If a user signs out, and immediately signs back in as the same user in this mockup
             //Only the authed value with be toggled, rather than a fresh login,
             //So that some values can be stored in Context that I can't currently store in the DB.
             //This will change if my authentication issues are resolved
-            setUser({...user, authed: true})
+            setUser({...user, authed: true});
         } else {
             try {
                 const reply = await logIn(accountNum);
-                console.log(reply)
                 if (reply && typeGuardUser(reply)) {
                     const user:User = {
                         authed: true,
@@ -48,17 +47,17 @@ export default function Login () {
                         last_withdraw_date: reply.last_withdraw_date,
                         last_withdraw_sum: reply.last_withdraw_sum,
                         server_date: reply.server_date
-                    }
+                    };
 
                     setUser(user);
                 } else if (reply && 'error' in reply) {
-                    setErrorMessage("Account Not Found!")
-                }
+                    setErrorMessage("Account Not Found!");
+                };
             }
             catch(err){
                 console.log(err)
                 /* Catch Logic Here if Needed */
-            }}
+            }};
     }
 
     return (

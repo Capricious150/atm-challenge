@@ -34,20 +34,19 @@ export const useDeposit = () => {
         } else return {
             error: false,
             step: 1
-        }
+        };
             
-    }
+    };
 
     const handleDeposit = async (amount: number, user: User): Promise<ValidationResponse | PgPutResponse | undefined> => {
 
         const validation: ValidationResponse = depositValidator(amount, user);
         if (validation.error === true) {
-            setStep(validation.step)
+            setStep(validation.step);
             return validation;
         } else if (validation.error === false && user.amount && user.account) {
             setStep(validation.step);
             const newBalance: number = user.amount + amount;
-            console.log(newBalance)
             const response = await updateAmount(newBalance, user.account); 
             setStep(2);
             return response;      

@@ -1,6 +1,6 @@
-import '../styling/App.css'
-import { useContext } from 'react'
-import { UserContext } from '../context/userContext'
+import '../styling/App.css';
+import { useContext } from 'react';
+import { UserContext } from '../context/userContext';
 import { Button } from '@mui/material';
 
 export default function Header() {
