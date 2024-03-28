@@ -1,6 +1,6 @@
 import express from 'express';
 import pg from 'pg';
-import { handleError, simulateLogin, simulatePut } from '../helpers/helpers.js';
+import { getFormattedDate, handleError, simulateLogin, simulatePut } from '../helpers/helpers.js';
 export const router = express.Router();
 
 
@@ -15,9 +15,9 @@ router.post('/login/:id', async (req, res) => {
             database: process.env.POSTGRES_DB
         })
         await client.connect()
-        const result = await client.query(`SELECT * FROM ACCOUNTS WHERE account_number = '${req.params.id}'`)
+        const result = await client.query(`SELECT * FROM ACCOUNTS WHERE account = '${req.params.id}'`)
         await client.end()
-        res.json(result)
+        res.json({...result, server_date: getFormattedDate()})
     } catch (err) {
         const response = simulateLogin(req.params.id)
         console.log(handleError(err.code))
@@ -36,17 +36,23 @@ router.put('/update', async (req, res) => {
             database: process.env.POSTGRES_DB
         })
         await client.connect()
-        const result = await client.query(`UPDATE ACCOUNTS SET amount = '${data.amount}' WHERE account_number = '${data.account}'`)
+        const result = await client.query(`UPDATE ACCOUNTS SET amount = '${data.amount}'${data.sum ? `, last_withdraw_date = '${getFormattedDate()}', last_withdraw_sum = ${data.sum}`: ``} WHERE account = '${data.account}'`)
         await client.end()
         res.json(result)
 
 
         res.json({
-            amount: data.amount
+            amount: result.amount
         })
     } catch (err) {
-        const response = simulatePut(req.body.account, req.body.amount)
-        console.log(handleError(err.code))
-        res.json(response)
+        if (req.body.sum) {
+            const response = simulatePut(req.body.account, req.body.amount, req.body.sum)
+            console.log(handleError(err.code))
+            res.json(response)
+        } else {
+            const response = simulatePut(req.body.account, req.body.amount)
+            console.log(handleError(err.code))
+            res.json(response)
+        }
     }
 })

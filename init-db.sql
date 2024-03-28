@@ -1,7 +1,7 @@
 -- CREATE TABLE
 DROP TABLE IF EXISTS accounts;
 CREATE TABLE accounts (
-    account_number INTEGER PRIMARY KEY,
+    account INTEGER PRIMARY KEY,
     name VARCHAR NOT NULL,
     amount DECIMAL NOT NULL,
     type VARCHAR NOT NULL,
@@ -15,7 +15,7 @@ CHECK (type IN ('checking', 'savings', 'credit'));
 
 -- LOAD DATAS
 INSERT INTO accounts 
-    (account_number, name, amount, type, credit_limit, last_withdraw_date, last_withdraw_sum)
+    (account, name, amount, type, credit_limit, last_withdraw_date, last_withdraw_sum)
 VALUES
     (1, 'Johns Checking', 1000.00, 'checking',0, '3/21/2024', 400),
     (2, 'Janes Savings', 2000.00, 'savings',0, '3/26/2024', 300),

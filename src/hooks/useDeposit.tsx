@@ -6,7 +6,7 @@ export const useDeposit = () => {
     const [step, setStep] = useState<number>(0);
 
     const depositValidator = (amount: number, user: User): ValidationResponse => {
-        if (isNaN(amount) || typeof user.amount === 'undefined' || typeof user.account === 'undefined') {
+        if (isNaN(amount) || typeof user.amount === "undefined" || typeof user.account === "undefined") {
             return {
                 error: true,
                 message: "Catastrophic error",
@@ -15,19 +15,19 @@ export const useDeposit = () => {
         } else if (amount <= 0) {
             return {
                 error: true,
-                message: 'Deposit must be positive, non-zero number',
+                message: "Deposit must be positive, non-zero number",
                 step: 0
             };
         } else if (amount > 1000) {
             return {
                 error: true,
-                message: 'Maximum Deposit Amount is 1000',
+                message: "Maximum Deposit Amount is 1000",
                 step: 0
             }; 
-        } else if (user.type === 'credit' && amount + user.amount > 0){
+        } else if (user.type === "credit" && amount + user.amount > 0){
             return {
                 error: true,
-                message: 'Credit account cannot exceed positive 0 balance',
+                message: "Credit account cannot exceed positive 0 balance",
                 step: 0
             }
         } else return {

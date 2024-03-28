@@ -14,13 +14,18 @@ export async function logIn (accNum: string): Promise<User | LoginError | undefi
     }
 }
 
-export async function updateAmount (amount: number, account: number): Promise<PgPutResponse | undefined > {
+export async function updateAmount (amount: number, account: number, sum?: number): Promise<PgPutResponse | undefined > {
     try {
         console.log("Entered Update")
         const payload: BalancePayload = {
             account: account,
             amount: amount
         }
+        
+        if (sum) {
+            payload.sum = sum
+        }
+
         const response = await fetch(`http://localhost:3000/update`, {
             method: 'PUT',
             headers: {

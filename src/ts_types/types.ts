@@ -16,7 +16,8 @@ export type LoginError = {
 
 export type BalancePayload = {
     account: number,
-    amount: number
+    amount: number,
+    sum?: number
 }
 
 export type ValidationResponse = {
@@ -26,5 +27,7 @@ export type ValidationResponse = {
 }
 
 export type PgPutResponse = {
-    amount: string
+    amount: string,
+    last_withdraw_date?: string,
+    last_withdraw_sum?: string
 }

@@ -121,6 +121,7 @@ export function simulateLogin(accNum) {
 
 }
 
-export function simulatePut(account, amount) {
-    return {amount: amount}
+export function simulatePut(account, amount, sum) {
+    if (!sum) return {amount: amount}
+    else return {amount: amount, last_withdraw_date: getFormattedDate(), last_withdraw_sum: sum}
 }
