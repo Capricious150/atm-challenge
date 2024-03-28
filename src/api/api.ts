@@ -1,6 +1,6 @@
-import { BalancePayload, PgPutResponse, User } from "../ts_types/types";
+import { BalancePayload, LoginError, PgPutResponse, User } from "../ts_types/types";
 
-export async function logIn (accNum: string): Promise<User | undefined | void> {
+export async function logIn (accNum: string): Promise<User | LoginError | undefined | void> {
     try {
         const response = await fetch(`http://localhost:3000/login/${accNum}`, {
             method: 'POST'

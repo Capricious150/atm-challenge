@@ -19,7 +19,7 @@ export const menuButtonSmall = {
 export const modalCard = {
     backgroundColor: 'rgba(104,104,163,1)',
     height: '40vh',
-    width: '20vw',
+    width: '25vw',
     textAlign: 'center',
     p: '3rem',
     display: 'flex',

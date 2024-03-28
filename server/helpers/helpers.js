@@ -20,7 +20,7 @@ export function simulateLogin(accNum) {
 
     const simulatedResponses = {
         1: {
-            num: 1,
+            account: 1,
             name: 'Johns Checking',
             amount: 1000,
             type: "checking",
@@ -30,7 +30,7 @@ export function simulateLogin(accNum) {
             server_date: getFormattedDate()
         },
         2: {
-            num:2,
+            account:2,
             name:'Janes Savings',
             amount:2000,
             type:'savings',
@@ -40,7 +40,7 @@ export function simulateLogin(accNum) {
             server_date: getFormattedDate()
         },
         3: {
-            num:3,
+            account:3,
             name:'Jills Credit',
             amount:-3000,
             type:'credit',
@@ -50,7 +50,7 @@ export function simulateLogin(accNum) {
             server_date: getFormattedDate()
         },
         4: {
-            num: 4,
+            account: 4,
             name:'Bobs Checking',
             amount:40000,
             type:'checking',
@@ -60,7 +60,7 @@ export function simulateLogin(accNum) {
             server_date: getFormattedDate()
         },
         5: {
-            num:5,
+            account:5,
             name:'Bills Savings',
             amount:50000,
             type:'savings',
@@ -70,7 +70,7 @@ export function simulateLogin(accNum) {
             server_date: getFormattedDate()
         },
         6: {
-            num:6,
+            account:6,
             name:'Bills Credit',
             amount:-60000,
             type:'credit',
@@ -80,7 +80,7 @@ export function simulateLogin(accNum) {
             server_date: getFormattedDate()
         },
         7: {
-            num:7,
+            account:7,
             name:'Nancy Checking',
             amount:70000,
             type:'checking',
@@ -90,7 +90,7 @@ export function simulateLogin(accNum) {
             server_date: getFormattedDate()
         },
         8: {
-            num:8,
+            account:8,
             name:'Nancy Savings',
             amount:80000,
             type:'savings',
@@ -100,7 +100,7 @@ export function simulateLogin(accNum) {
             server_date: getFormattedDate()
         },
         9: {
-            num:9,
+            account:9,
             name:'Nancy Credit',
             amount:-90000,
             type:'credit',
@@ -115,7 +115,7 @@ export function simulateLogin(accNum) {
         return simulatedResponses[accNum]
     } else {
         return {
-            "Error": "Not Found"
+            "error": "Not Found"
         }
     }
 

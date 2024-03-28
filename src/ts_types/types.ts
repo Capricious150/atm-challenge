@@ -10,6 +10,10 @@ export type User = {
     server_date?: string
 };
 
+export type LoginError = {
+    error: string
+}
+
 export type BalancePayload = {
     account: number,
     amount: number

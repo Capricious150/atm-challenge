@@ -1,9 +1,10 @@
 import { TextField, Button } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../context/userContext";
 import { logIn } from "../api/api";
 import { User } from "../ts_types/types";
 import { menuButtonSmall } from "../styling/sxProps";
+import { typeGuardUser } from "../utils/utils";
 
 export default function Login () {
 
@@ -11,6 +12,8 @@ export default function Login () {
     const [accountNum, setAccountNum] = useState<string>("");
     const [errorMessage, setErrorMessage] = useState<string>("");
 
+
+    //Only accept numeric characters into input using Regex.
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         const validEntry_REGEX: RegExp = /^\d+$/
         if (validEntry_REGEX.test(e.target.value) || e.target.value === "") {
@@ -29,10 +32,10 @@ export default function Login () {
             try {
                 const reply = await logIn(accountNum);
                 console.log(reply)
-                if (reply.type) {
+                if (reply && typeGuardUser(reply)) {
                     const user:User = {
                         authed: true,
-                        account: reply.num,
+                        account: reply.account,
                         name: reply.name,
                         amount: reply.amount,
                         type: reply.type,
@@ -43,12 +46,13 @@ export default function Login () {
                     }
 
                     setUser(user);
-                } else if (reply.Error) {
+                } else if (reply && 'error' in reply) {
                     setErrorMessage("Account Not Found!")
                 }
             }
             catch(err){
-
+                console.log(err)
+                /* Catch Logic Here if Needed */
             }}
     }
 
