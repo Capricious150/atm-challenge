@@ -36,7 +36,7 @@ export const useWithdrawal = () => {
                 message: "Account overdraw",
                 step: 0
             }
-        } else if (user.type === "credit" && amount + user.amount > (user.credit_limit * -1)) {
+        } else if (user.type === "credit" && amount + user.amount < (user.credit_limit * -1)) {
             return {
                 error: true,
                 message: "Maximum balance exceeded",

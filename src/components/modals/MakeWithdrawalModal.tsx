@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import { UserContext } from '../../context/userContext';
 import { User } from '../../ts_types/types';
 import { useWithdrawal } from '../../hooks/useWithdrawal';
+import { typeGuardPgResponse, typeGuardValidationResponse } from '../../utils/utils';
 
 export default function MakeWithdrawalModal () {
 
@@ -19,6 +20,20 @@ export default function MakeWithdrawalModal () {
         if (validEntry_REGEX.test(e.target.value) || e.target.value === "") {
             setWithdrawAmount(e.target.value)
         } 
+    }
+
+    const handleSubmit = async (amount: number, user: User): Promise<void> => {
+        setErrorMessage("");
+        const negativeAmount = (amount * -1);
+        const response = await handleWithdrawal(negativeAmount, user)
+
+        if (response === null) return;
+        if (response && typeGuardValidationResponse(response) && response.message) {
+            setErrorMessage(response.message)
+        } else if (response && typeGuardPgResponse(response) && !isNaN(parseFloat(response.amount)) && response.last_withdraw_sum) {
+            console.log(response.amount)
+            setUser({...user, amount: parseFloat(response.amount), last_withdraw_date: response.last_withdraw_date, last_withdraw_sum: parseInt(response.last_withdraw_sum)})
+        }
     }
 
     return(
@@ -52,13 +67,25 @@ export default function MakeWithdrawalModal () {
                             variant='contained' 
                             color='warning'
                             onClick={() => {
-                                if (!isNaN(parseFloat(withdrawAmount))) handleWithdrawal(parseFloat(withdrawAmount), user)}
+                                if (!isNaN(parseFloat(withdrawAmount))) handleSubmit(parseFloat(withdrawAmount), user)}
                             }
                             >Submit</Button>
                         </>
                     }
                     {step === 1 &&
                         <h2>Loading</h2>
+                    }
+                    {step === 2 &&
+                        <>
+                            <h2>Success!</h2>
+                            <h2>Your withdrawal has been successfully completed</h2>
+                            <span className='growSpan' />
+                            <Button
+                                color='warning'
+                                variant='contained'
+                                onClick={() => resetStep()}
+                            >Make another Withdrawal</Button>
+                        </>                        
                     }
                 </Card>
             <Button onClick={() => setUser({...user, authed: false})}>Sign Out</Button>

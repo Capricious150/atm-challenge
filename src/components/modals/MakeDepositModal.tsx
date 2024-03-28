@@ -27,13 +27,10 @@ export default function MakeDepositModal () {
         setErrorMessage("")
         const response = await handleDeposit(amount, user);
         if (response === null) return;
-        //@ts-ignore
         if (response && typeGuardValidationResponse(response) && response.message) {
             setErrorMessage(response.message)
         }
-        //@ts-ignore
         else if (response && typeGuardPgResponse(response) && !isNaN(parseFloat(response.amount))) {
-            //@ts-ignore
             console.log(response.amount)
             setUser({...user, amount: parseFloat(response.amount)})
         }
