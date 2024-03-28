@@ -19,7 +19,13 @@ export const useDeposit = () => {
         const newBalance: number = user.amount + amount
         const response = await updateAmount(newBalance, user.account) 
         console.log(response)
+        setStep(2);
         return response      
     }}
-    return {step, handleDeposit}
+
+    const resetStep = () => {
+        setStep(0)
+    }
+
+    return {step, handleDeposit, resetStep}
 }

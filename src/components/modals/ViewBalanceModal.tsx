@@ -3,6 +3,7 @@ import { Dialog, Button, Card } from "@mui/material";
 import { menuButton, modalCard } from "../../styling/sxProps";
 import { useState, useContext } from "react";
 import { UserContext } from '../../context/userContext';
+import { handleCoinage } from '../../utils/utils';
 
 export default function ViewBalanceModal () {
 
@@ -23,12 +24,12 @@ export default function ViewBalanceModal () {
                 <Card
                 sx={modalCard}
                 >
-                    { (user.type === 'checking' || user.type === 'savings') &&
-                        <h2>Account Balance: ${user.amount}</h2>
+                    { ((user.type === 'checking' || user.type === 'savings') && typeof user.amount !== "undefined") &&
+                        <h2>Account Balance: ${handleCoinage(parseFloat(user.amount))}</h2>
                     }
-                    {  user.type === 'credit' &&
+                    {  (user.type === 'credit' && typeof user.amount !== "undefined" ) &&
                         <>
-                            <h2>Account Balance: ${(parseInt(user.amount) * -1).toString()}</h2>
+                            <h2>Account Balance: ${handleCoinage(parseFloat(user.amount) * -1).toString()}</h2>
                             <h2>Credit Limit: ${user.credit_limit}</h2>
                         </>
                     }

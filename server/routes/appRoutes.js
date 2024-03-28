@@ -1,6 +1,6 @@
 import express from 'express';
 import pg from 'pg';
-import { simulateLogin, simulatePut } from '../helpers/helpers.js';
+import { handleError, simulateLogin, simulatePut } from '../helpers/helpers.js';
 export const router = express.Router();
 
 
@@ -20,7 +20,7 @@ router.post('/login/:id', async (req, res) => {
         res.json(result)
     } catch (err) {
         const response = simulateLogin(req.params.id)
-        console.log(err.code)
+        console.log(handleError(err.code))
         res.json(response)
     }
 })
@@ -46,6 +46,7 @@ router.put('/update', async (req, res) => {
         })
     } catch (err) {
         const response = simulatePut(req.body.account, req.body.amount)
-        console.log(err.code)
+        console.log(handleError(err.code))
+        res.json(response)
     }
 })

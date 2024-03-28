@@ -1,5 +1,9 @@
-export function handleError() {
-
+export function handleError(str) {
+    if (str === "28P01") {
+        return "Authentication Error"
+    } else {
+        return "Unknown Error"
+    }
 }
 
 export function getFormattedDate () {
@@ -117,6 +121,6 @@ export function simulateLogin(accNum) {
 
 }
 
-export function simulatePut() {
-    
+export function simulatePut(account, amount) {
+    return {amount: amount}
 }

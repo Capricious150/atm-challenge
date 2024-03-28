@@ -4,13 +4,14 @@ import { menuButton, modalCard } from "../../styling/sxProps";
 import { useState, useContext } from "react";
 import { UserContext } from '../../context/userContext';
 import { useDeposit } from '../../hooks/useDeposit';
+import { User } from '../../ts_types/types';
 
 export default function MakeDepositModal () {
     
     const [open, setOpen] = useState<boolean>(false)
     const [depAmount, setDepAmount] = useState<string>("")
     const {user, setUser} = useContext(UserContext)
-    const {step, handleDeposit} = useDeposit();
+    const {step, handleDeposit, resetStep} = useDeposit();
 
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         const validEntry_REGEX: RegExp = /^\d+(\.\d{0,2})?$/
@@ -18,6 +19,12 @@ export default function MakeDepositModal () {
             setDepAmount(e.target.value)
         } 
     }
+
+    const handleSubmit = async (amount: number, user: User) => {
+        const response = await handleDeposit(amount, user);
+        setUser({...user, amount: response.amount})
+    }
+
     return(
         <>
             <Button 
@@ -50,7 +57,7 @@ export default function MakeDepositModal () {
                     variant='contained' 
                     color='warning'
                     onClick={() => {
-                        if (!isNaN(parseFloat(depAmount))) handleDeposit(parseFloat(depAmount), user)}
+                        if (!isNaN(parseFloat(depAmount))) handleSubmit(parseFloat(depAmount), user)}
                     }
                     >Submit</Button>
                 </>
@@ -62,6 +69,12 @@ export default function MakeDepositModal () {
                 <>
                     <h2>Success!</h2>
                     <h2>Your deposit has been successfully completed</h2>
+                    <span className='growSpan' />
+                    <Button
+                        color='warning'
+                        variant='contained'
+                        onClick={() => resetStep()}
+                    >Make another Deposit</Button>
                 </>
             }
             {step > 2 &&
@@ -71,8 +84,8 @@ export default function MakeDepositModal () {
                 </>
             }
             </Card>
-                <Button onClick={() => setUser({...user, authed: false})}>Sign Out</Button>
-                <Button onClick={() => setOpen(!open)}>Return to Menu</Button>
+            <Button onClick={() => setUser({...user, authed: false})}>Sign Out</Button>
+            <Button onClick={() => setOpen(!open)}>Return to Menu</Button>
             </Dialog>
         </>
     )
