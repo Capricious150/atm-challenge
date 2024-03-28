@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { User, ValidationResponse } from "../ts_types/types";
 import { updateAmount } from "../api/api";
 

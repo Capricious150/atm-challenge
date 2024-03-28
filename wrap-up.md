@@ -22,7 +22,7 @@ At time of writing, I'm waiting on a response from another developer to see if t
 
 Today, this project's context is very simple, and is easy to manage with React's built in context management tools. However, if this were a project that I expected would expand meaningfully in size and complexity, I would probably switch from using React's createContext to using Redux. This is because having a single immutable state object which can only be interacted with in a strict order would be easier to troubleshoot and maintain over time. 
 
-If this project were to move beyond being a proof-of-concept, I would also want to make sure I'm using industry standard security, encryption, and obfuscation within the app.
+If this project were to move beyond being a proof-of-concept, I would also want to make sure I'm using industry standard security, encryption, and obfuscation within the app. I'd also want to add receipt printing functionality.
 
 Lastly, right now there are a number of design choices in this project that I only made because I can't auth into the database. Those would need to be fixed. The two biggest changes would be:
 
