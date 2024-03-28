@@ -118,5 +118,5 @@ export function simulateLogin(accNum) {
 }
 
 export function simulatePut() {
-
+    
 }
