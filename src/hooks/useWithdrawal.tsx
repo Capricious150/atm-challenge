@@ -15,13 +15,13 @@ export const useWithdrawal = () => {
         } else if (amount >= 0) {
             return {
                 error: true,
-                message: "Withdraw must be a negative value",
+                message: "Withdraw must be a negative value (How did you manage this?)",
                 step: 0
             };
         } else if (amount < -200) {
             return {
                 error: true,
-                message: "Withdraw must be 200 or fewer dollars",
+                message: "Withdraw must be $200.00 or fewer dollars",
                 step: 0
             };
         } else if ((amount * -1)%5 !== 0) {
@@ -33,7 +33,7 @@ export const useWithdrawal = () => {
          }else if (user.type !== "credit" && amount + user.amount < 0) {
             return {
                 error: true,
-                message: "Account overdraw",
+                message: "Cannot overdraw account",
                 step: 0
             }
         } else if (user.type === "credit" && amount + user.amount < (user.credit_limit * -1)) {
@@ -45,7 +45,7 @@ export const useWithdrawal = () => {
         } else if (user.last_withdraw_date &&  user.last_withdraw_sum && user.last_withdraw_date === user.server_date && (amount * -1) + user.last_withdraw_sum > 400) {
             return {
                 error: true,
-                message: "Cannot withdraw more than 400 a day",
+                message: "Cannot withdraw more than $400.00 in a day",
                 step: 0
             }
         } else return {
