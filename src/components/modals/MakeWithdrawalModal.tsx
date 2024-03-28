@@ -53,7 +53,7 @@ export default function MakeWithdrawalModal () {
                         <>
                             <h3>Make a Deposit</h3>
                             <span className='growSpan' />
-                            <p>{errorMessage}</p>
+                            <p className='errorText'>{errorMessage}</p>
                             <TextField 
                             label={"Enter amount to withdraw"}
                             value={withdrawAmount}

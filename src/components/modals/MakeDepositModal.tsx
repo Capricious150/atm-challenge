@@ -60,7 +60,7 @@ export default function MakeDepositModal () {
                     <>
                         <h3>Make a Deposit</h3>
                         <span className='growSpan' />
-                        <p>{errorMessage}</p>
+                        <p className='errorText'>{errorMessage}</p>
                         <TextField 
                         label={"Enter amount to deposit"}
                         value={depAmount}

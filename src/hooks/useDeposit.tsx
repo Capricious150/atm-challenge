@@ -22,7 +22,7 @@ export const useDeposit = () => {
         } else if (amount > 1000) {
             return {
                 error: true,
-                message: "Maximum Deposit Amount is 1000",
+                message: "Maximum single deposit amount is $1000.00",
                 step: 0
             }; 
         } else if (user.type === "credit" && amount + user.amount > 0){
