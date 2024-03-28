@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import { UserContext } from '../../context/userContext';
 import { useDeposit } from '../../hooks/useDeposit';
 import { User } from '../../ts_types/types';
+import { typeGuardPgResponse, typeGuardValidationResponse } from '../../utils/utils';
 
 export default function MakeDepositModal () {
     
@@ -27,11 +28,11 @@ export default function MakeDepositModal () {
         const response = await handleDeposit(amount, user);
         if (response === null) return;
         //@ts-ignore
-        if (response && response.error && response.error === true && response.message) {
+        if (response && typeGuardValidationResponse(response) && response.message) {
             setErrorMessage(response.message)
         }
         //@ts-ignore
-        else if (response && typeof response?.amount !== 'undefined' && !isNaN(parseFloat(response.amount))) {
+        else if (response && typeGuardPgResponse(response) && !isNaN(parseFloat(response.amount))) {
             //@ts-ignore
             console.log(response.amount)
             setUser({...user, amount: parseFloat(response.amount)})

@@ -1,4 +1,4 @@
-import { User, LoginError } from "../ts_types/types";
+import { User, LoginError, PgPutResponse, ValidationResponse } from "../ts_types/types";
 
 export function titleCase (str:string | undefined) {
     if (typeof str === "undefined") return ""
@@ -15,4 +15,13 @@ export function handleCoinage (num: number) {
 
 export function typeGuardUser (obj: User | LoginError): obj is User {
     return (obj as User).type !== undefined;
+}
+
+
+export function typeGuardPgResponse (obj: PgPutResponse | ValidationResponse): obj is PgPutResponse {
+    return (obj as PgPutResponse).amount !== undefined;
+}
+
+export function typeGuardValidationResponse(obj: PgPutResponse | ValidationResponse): obj is ValidationResponse {
+    return (obj as ValidationResponse).error !== undefined;
 }

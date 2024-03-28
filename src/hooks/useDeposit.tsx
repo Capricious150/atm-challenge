@@ -9,7 +9,7 @@ export const useDeposit = () => {
         if (isNaN(amount) || typeof user.amount === 'undefined' || typeof user.account === 'undefined') {
             return {
                 error: true,
-                message: "catastrophic error",
+                message: "Catastrophic error",
                 step: 3
             };
         } else if (amount <= 0) {
@@ -43,7 +43,7 @@ export const useDeposit = () => {
         if (validation.error === true) {
             setStep(validation.step)
             return validation;
-        } else if (validation.error === false) {
+        } else if (validation.error === false && user.amount && user.account) {
             setStep(validation.step);
             const newBalance: number = user.amount + amount;
             console.log(newBalance)
