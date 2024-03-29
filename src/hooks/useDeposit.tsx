@@ -51,11 +51,11 @@ export const useDeposit = () => {
             setStep(2);
             return response;      
         }
-    }
+    };
 
     const resetStep = (): void => {
         setStep(0);
-    }
+    };
 
-    return {step, handleDeposit, resetStep}
+    return {step, handleDeposit, resetStep};
 }

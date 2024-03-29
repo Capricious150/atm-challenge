@@ -75,7 +75,6 @@ export const useWithdrawal = () => {
             
             setStep(validation.step);
             const newBalance: number = user.amount + amount
-            console.log(newBalance)
             const response = await updateAmount(newBalance, user.account, sum)
             setStep(2)
             return response; 

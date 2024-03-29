@@ -11,7 +11,6 @@ export function titleCase (str:string | undefined) {
 
 //Makes a number have coinage
 export function handleCoinage (num: number) {
-    console.log(num.toFixed(2));
     return num.toFixed(2);
 };
 

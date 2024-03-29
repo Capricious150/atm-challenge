@@ -1,11 +1,11 @@
 //This was meant to allow me to quickly break up different types of errors. However I ultimately only ever got the one type of error"
 export function handleError(str) {
     if (str === "28P01") {
-        return "Authentication Error"
+        return "Authentication Error";
     } else {
-        return "Unknown Error"
-    }
-}
+        return "Unknown Error";
+    };
+};
 
 //Gets the current date and returns it as a string in format 'mm/dd/yyyy'
 export function getFormattedDate () {
@@ -16,7 +16,7 @@ export function getFormattedDate () {
     if (month.length === 1) month = `0${month}`;
     let year = date.getFullYear().toString();
     return `${month}/${day}/${year}`;
-}
+};
 
 //Throughout development, I've been unable to authenticate into the Docker Container from my OS.
 //Because of this, I needed to create a simple function which would return default values during database actions to simulate responses
@@ -132,7 +132,7 @@ export function simulateLogin(accNum) {
             last_withdraw_sum: 300,
             server_date: getFormattedDate()
         }
-    }
+    };
 
     if (Object.keys(simulatedResponses).indexOf(accNum) !== -1) {
         return simulatedResponses[accNum]
@@ -140,11 +140,11 @@ export function simulateLogin(accNum) {
         return {
             "error": "Not Found"
         }
-    }
+    };
 
-}
+};
 
 export function simulatePut(account, amount, sum) {
-    if (!sum) return {amount: amount}
-    else return {amount: amount, last_withdraw_date: getFormattedDate(), last_withdraw_sum: sum}
-}
+    if (!sum) return {amount: amount};
+    else return {amount: amount, last_withdraw_date: getFormattedDate(), last_withdraw_sum: sum};
+};
