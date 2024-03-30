@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { User, ValidationResponse } from "../ts_types/types";
+import { PgPutResponse, User, ValidationResponse } from "../ts_types/types";
 import { updateAmount } from "../api/api";
 
 export const useWithdrawal = () => {
@@ -53,10 +53,10 @@ export const useWithdrawal = () => {
         } else return {
             error: false, 
             step: 1
-        }
+        };
     };
 
-    const handleWithdrawal = async (amount: number, user: User) => {
+    const handleWithdrawal = async (amount: number, user: User): Promise<ValidationResponse | PgPutResponse | undefined> => {
         const validation = withdrawalValidator(amount, user);
         if (validation.error === true) {
             setStep(validation.step);
@@ -78,12 +78,12 @@ export const useWithdrawal = () => {
             const response = await updateAmount(newBalance, user.account, sum)
             setStep(2)
             return response; 
-        }
+        };
     };
 
-    const resetStep = () => {
-        setStep(0)
+    const resetStep = (): void => {
+        setStep(0);
     };
 
-    return {step, handleWithdrawal, resetStep}
+    return {step, handleWithdrawal, resetStep};
 }

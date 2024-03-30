@@ -1,7 +1,7 @@
 import { User, LoginError, PgPutResponse, ValidationResponse } from "../ts_types/types";
 
 //Performs the same function as string.Title() method from other languages
-export function titleCase (str:string | undefined) {
+export function titleCase (str:string | undefined): string {
     if (typeof str === "undefined") return "";
     const theLetters = str.split('');
     theLetters[0] = theLetters[0].toUpperCase();

@@ -7,8 +7,8 @@ import { handleCoinage } from '../../utils/utils';
 
 export default function ViewBalanceModal () {
 
-    const [open, setOpen] = useState<boolean>(false)
-    const {user, setUser} = useContext(UserContext)
+    const [open, setOpen] = useState<boolean>(false);
+    const {user, setUser} = useContext(UserContext);
     return(
         <>
             <Button 

@@ -15,15 +15,16 @@ export default function Login () {
 
     //Only accept numeric characters into input using Regex.
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        const validEntry_REGEX: RegExp = /^\d+$/
+        const validEntry_REGEX: RegExp = /^\d+$/;
         if (validEntry_REGEX.test(e.target.value) || e.target.value === "") {
             setAccountNum(e.target.value);
-        }
+        };
     };
 
-    const handleLogIn = async () => {
+    const handleLogIn = async (): Promise<string | void> => {
         if (errorMessage) setErrorMessage("Account Number");
         if ((isNaN(parseInt(accountNum))) || parseInt(accountNum) <= 0){
+            //I've never been able to produce this theoretical condition
             return "error";
         };
         if (user.account && user.account === parseInt(accountNum)){

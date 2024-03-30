@@ -16,10 +16,10 @@ export default function MakeWithdrawalModal () {
     const [errorMessage, setErrorMessage] = useState<string>("");
 
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
-        const validEntry_REGEX: RegExp = /^\d+$/
+        const validEntry_REGEX: RegExp = /^\d+$/;
         if (validEntry_REGEX.test(e.target.value) || e.target.value === "") {
-            setWithdrawAmount(e.target.value)
-        } 
+            setWithdrawAmount(e.target.value);
+        };
     };
 
     const handleSubmit = async (amount: number, user: User): Promise<void> => {

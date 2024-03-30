@@ -12,22 +12,22 @@ export type User = {
 
 export type LoginError = {
     error: string
-}
+};
 
 export type BalancePayload = {
     account: number,
     amount: number,
     sum?: number
-}
+};
 
 export type ValidationResponse = {
     error: boolean,
     message?: string,
     step: number
-}
+};
 
 export type PgPutResponse = {
     amount: string,
     last_withdraw_date?: string,
     last_withdraw_sum?: string
-}
+};

@@ -7,15 +7,15 @@ export const UserContext = createContext<{
     user: User,
     setUser: (user: User) => void}>
     ({user: {authed: false},
-    setUser: () => {}})
+    setUser: () => {}});
 
 export default function UserProvider ({children}: {children: ReactNode}) {
 
-    const [user, setUser] = useState<User>({authed:false})
+    const [user, setUser] = useState<User>({authed:false});
 
     return (
         <UserContext.Provider value={{user, setUser}}>
             {children}
         </UserContext.Provider>
-    )
+    );
 }

@@ -21,7 +21,7 @@ export default function MakeDepositModal () {
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
         //Regex will test to fit format '0000.00', '0000.' or '0000' 
         //(The 0's could be any number)
-        const validEntry_REGEX: RegExp = /^\d+(\.\d{0,2})?$/
+        const validEntry_REGEX: RegExp = /^\d+(\.\d{0,2})?$/;
         if (validEntry_REGEX.test(e.target.value) || e.target.value === "") {
             setDepAmount(e.target.value);
         } 

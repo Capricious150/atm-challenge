@@ -8,7 +8,7 @@ export const menuButton = {
     my: '1rem',
     p: '0.5rem',
     pb: '1rem'
-}
+};
 
 export const menuButtonSmall = {
     color: 'white',
@@ -16,7 +16,7 @@ export const menuButtonSmall = {
     display: 'block',
     my: '1rem',
     p: '0.5rem',
-}
+};
 
 export const modalCard = {
     backgroundColor: 'rgba(104,104,163,1)',
@@ -28,4 +28,4 @@ export const modalCard = {
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column'
-}
+};
