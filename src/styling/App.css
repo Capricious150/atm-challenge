@@ -30,7 +30,7 @@
 
 #loginField {
   margin: auto;
-  background-color: pink;
+  background-color: rgba(239,239,242,1);
 }
 
 #loginFieldNoBg {
