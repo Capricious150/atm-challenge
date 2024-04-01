@@ -118,7 +118,7 @@ export function simulateLogin(accNum) {
             amount: 400.00,
             type: "checking",
             credit_limit: 0,
-            last_withdraw_date: '03/28/2024',
+            last_withdraw_date: '04/01/2024',
             last_withdraw_sum: 200,
             server_date: getFormattedDate()
         },
@@ -128,6 +128,16 @@ export function simulateLogin(accNum) {
             amount: -8800.00,
             type: 'credit',
             credit_limit: 9000,
+            last_withdraw_date: '03/25/2024',
+            last_withdraw_sum: 300,
+            server_date: getFormattedDate()
+        },
+        12: {
+            account: 12,
+            name: 'Borfs Checking',
+            amount: 100.00,
+            type: 'checking',
+            credit_limit: 0,
             last_withdraw_date: '03/25/2024',
             last_withdraw_sum: 300,
             server_date: getFormattedDate()

@@ -47,7 +47,7 @@ export const useWithdrawal = () => {
             return {
                 error: true,
                 message: `Cannot withdraw more than $400.00 in a day. 
-                 Today, you've withdrawn $${user.last_withdraw_sum}.00`,
+                 Today you've withdrawn $${user.last_withdraw_sum}.00`,
                 step: 0
             }
         } else return {

@@ -25,12 +25,12 @@ export default function ViewBalanceModal () {
                 sx={modalCard}
                 >
                     { ((user.type === 'checking' || user.type === 'savings') && typeof user.amount !== "undefined") &&
-                        <h2>Account Balance: ${handleCoinage(user.amount)}</h2>
+                        <h2>Available Balance: ${handleCoinage(user.amount)}</h2>
                     }
                     {  (user.type === 'credit' && typeof user.amount !== "undefined" ) &&
                         <>
-                            <h2>Account Balance: ${(handleCoinage(user.amount * -1))}</h2>
-                            <h2>Credit Limit: ${user.credit_limit}</h2>
+                            <h2>Current Balance: ${(handleCoinage(user.amount * -1))}</h2>
+                            <h2>Credit Limit: ${user.credit_limit}.00</h2>
                         </>
                     }
                 </Card>

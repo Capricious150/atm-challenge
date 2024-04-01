@@ -20,7 +20,7 @@ At time of writing, I'm waiting on a response from another developer to see if t
 
 ### If you were to continue building this out, what would you like to add next?
 
-Today, this project's context is very simple, and is easy to manage with React's built in context management tools. However, if this were a project that I expected would expand meaningfully in size and complexity, I would probably switch from using React's createContext to using Redux. This is because having a single immutable state object which can only be interacted with in a strict order would be easier to troubleshoot and maintain over time. 
+Today this project's context is very simple, and is easy to manage with React's built in context management tools. However, if this were a project that I expected would expand meaningfully in size and complexity, I would probably switch from using React's createContext to using Redux. This is because having a single immutable state object which can only be interacted with in a strict order would be easier to troubleshoot and maintain over time. 
 
 If this project were to move beyond being a proof-of-concept, I would also want to make sure I'm using industry standard security, encryption, and obfuscation within the app. I'd also want to add receipt printing functionality.
 
