@@ -27,5 +27,5 @@ VALUES
     (8, 'Nancy Savings', 80000.00, 'savings',0,'03/27/2024', 300),
     (9, 'Nancy Credit', -90000.00, 'credit', 100000, '01/01/2024', 200),
     (10, 'Todds Checking', 400.00, 'checking', 0,'04/01/2024', 200),
-    (11, 'Todds Credit', -8800.00, 'credit', 9000, '03/25/2024', 300);
+    (11, 'Todds Credit', -8800.00, 'credit', 9000, '03/25/2024', 300),
     (12, 'Borfs Checking', 100.00, 'checking', 0, '03/25/2024', 300);
