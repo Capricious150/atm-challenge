@@ -28,6 +28,8 @@ Today this project's context is very simple, and is easy to manage with React's 
 
 If this project were to move beyond being a proof-of-concept, I would also want to make sure I'm using industry standard security, encryption, and obfuscation within the app. I'd also want to add receipt printing functionality.
 
+Also, this project was built with the belief that no on-screen keyboard is needed, but if this were to be used in standard ATM terminals, that's something that would need to be added.
+
 ### If you have any other comments or info you'd like the reviewers to know, please add them below.
 
 [Inspiration for page layout](https://www.pinterest.ph/pin/168673948522477798/)
