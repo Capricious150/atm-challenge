@@ -47,6 +47,5 @@ The different options will have the following behaviors:
 
 At the time of this writing, I am unable to auth into the docker database from outside of the container. This includes authentication attempts being made by my app.
 Because of this, the app is designed to simulate functionality even if it doesn't have a working database connection.
-My greatest concern is that my authentication issues are somehow unique and local to my system, and authentication will work correctly on another person's machine, which is a circumstance I've been completely unable to test. Because of this, my backend may not work correctly IF database authentication IS working correctly.
 
-At time of writing, I'm waiting on a response from another developer to see if this is a known issue to them.
+My greatest concern is that my authentication issues are somehow unique and local to my system, and authentication will work correctly on another person's machine, which is a circumstance I've been completely unable to test. Because of this, my backend may not work correctly IF database authentication IS working correctly.
