@@ -40,6 +40,11 @@ export default function MakeDepositModal () {
         }
     };
 
+    const handleReturn = ():void => {
+        setOpen(!open);
+        resetStep();
+    }
+
     return(
         <>
             <Button 
@@ -107,7 +112,7 @@ export default function MakeDepositModal () {
             {/* Below, only setting "authed" to false, rather than clearing state, to maintain data between a logout/in as the same user. 
             This is because, due to authentication issues, I can't update the actual DB, so I need to use some illusions to simulate database persistance*/}
             <Button onClick={() => setUser({...user, authed: false})}>Sign Out</Button>
-            <Button onClick={() => setOpen(!open)}>Return to Menu</Button>
+            <Button onClick={() => handleReturn()}>Return to Menu</Button>
             </Dialog>
         </>
     )

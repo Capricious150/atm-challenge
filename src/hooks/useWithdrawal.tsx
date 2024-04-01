@@ -22,7 +22,7 @@ export const useWithdrawal = () => {
         } else if (amount < -200) {
             return {
                 error: true,
-                message: "Withdraw must be $200.00 or fewer dollars",
+                message: "Maximum single withdrawal amount is $200.00",
                 step: 0
             };
         } else if ((amount * -1)%5 !== 0) {

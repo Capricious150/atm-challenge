@@ -36,6 +36,11 @@ export default function MakeWithdrawalModal () {
         }
     };
 
+    const handleReturn = ():void => {
+        setOpen(!open);
+        resetStep();
+    }
+
     return(
         <>
             <Button 
@@ -51,7 +56,7 @@ export default function MakeWithdrawalModal () {
                 sx={modalCard}>
                     {step === 0 &&
                         <>
-                            <h3>Make a Deposit</h3>
+                            <h3>Make a Withdrawal</h3>
                             <span className='growSpan' />
                             <p className='errorText'>{errorMessage}</p>
                             <TextField 
@@ -98,7 +103,7 @@ export default function MakeWithdrawalModal () {
                     }
                 </Card>
             <Button onClick={() => setUser({...user, authed: false})}>Sign Out</Button>
-            <Button onClick={() => setOpen(!open)}>Return to Menu</Button>
+            <Button onClick={() => handleReturn()}>Return to Menu</Button>
             </Dialog>
         </>
     )

@@ -60,7 +60,9 @@
 
 .errorText {
   font-size: 0.8rem;
-  color: darkred;
+  color: #FFA500;
+
+  /* background-color: white; */
 }
 
 h1, h2, h3 {

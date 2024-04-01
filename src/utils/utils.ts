@@ -26,3 +26,9 @@ export function typeGuardPgResponse (obj: PgPutResponse | ValidationResponse): o
 export function typeGuardValidationResponse(obj: PgPutResponse | ValidationResponse): obj is ValidationResponse {
     return (obj as ValidationResponse).error !== undefined;
 };
+
+export function betterNames(name: string) {
+    const theLetters = name.split('');
+    if (theLetters[theLetters.length - 1] === 's') theLetters.pop()
+    return theLetters.join('');
+}
